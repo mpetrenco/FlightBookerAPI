@@ -16,6 +16,7 @@ public func configure(_ app: Application) throws {
     /**
      * Add the `flights` schema to the database.
      */
+    app.migrations.add(CreateLocations())
     app.migrations.add(CreateFlights())
     
     /**
