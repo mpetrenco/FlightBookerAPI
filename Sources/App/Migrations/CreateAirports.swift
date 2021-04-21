@@ -1,20 +1,20 @@
 //
-//  CreateLocations.swift
+//  CreateAirports.swift
 //  Created by Mihai Petrenco on 4/20/21.
 //
 
 import Fluent
 
-struct CreateLocations: Migration {
+struct CreateAirports: Migration {
     
     /**
      * The required protocol method responsible for creating the database table.
      */
     func prepare(on database: Database) -> EventLoopFuture<Void> {
-        database.schema("locations")
+        database.schema("airports")
             .id()
             .field("code", .string, .required)
-            .field("airportName", .string, .required)
+            .field("name", .string, .required)
             .field("city", .string, .required)
             .create()
     }
@@ -24,7 +24,7 @@ struct CreateLocations: Migration {
      * Currently deletes the entire schema.
      */
     func revert(on database: Database) -> EventLoopFuture<Void> {
-        database.schema("locations").delete()
+        database.schema("airports").delete()
     }
 
 }

@@ -16,6 +16,11 @@ struct CreateFlights: Migration {
             .field("code", .string, .required)
             .field("price", .double, .required)
             .field("availableSeats", .int, .required)
+            .field("departureDate", .date, .required)
+            .field("arrivalDate", .date, .required)
+            .field("isReturn", .bool, .required)
+            .field("departureAirport", .uuid, .required, .references("airports", "id"))
+            .field("destinationAirport", .uuid, .required, .references("airports", "id"))
             .create()
     }
     

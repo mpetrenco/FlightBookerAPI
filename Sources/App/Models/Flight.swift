@@ -26,13 +26,43 @@ final class Flight: Model {
     var code: String
     
     /**
+     * The departure airport location.
+     */
+    @Parent(key: "departureAirport")
+    var departureAirport: Airport
+    
+    /**
+     * The destination airport location.
+     */
+    @Parent(key: "destinationAirport")
+    var destinationAirport: Airport
+    
+    /**
+     * The departure date/time of the flight
+     */
+    @Field(key: "departureDate")
+    var departureDate: Date
+    
+    /**
+     * The arrival date/time of the flight
+     */
+    @Field(key: "arrivalDate")
+    var arrivalDate: Date
+    
+    /**
      * The ticket price.
      */
     @Field(key: "price")
     var price: Double
 
     /**
-     * The number of available flights.
+     * A flag to specify if the flight ticket it two-way.
+     */
+    @Field(key: "isReturn")
+    var isReturn: Bool
+    
+    /**
+     * The number of available seats.
      */
     @Field(key: "availableSeats")
     var availableSeats: Int
@@ -47,18 +77,33 @@ final class Flight: Model {
      *
      * - parameter id - the UUID used to identify the row in the database.
      * - parameter code - the flight code.
+     * - parameter departureAirportID - the origin aiport location ID.
+     * - parameter destinationAirportID - the departure aiport location ID.
+     * - parameter departureDate - the departure date.
+     * - parameter arrivalDate - the arrival date.
      * - parameter price - the ticket price,
      * - parameter availableSeats - the number of available seats.
+     * - parameter isReturn - a flag to specify if the flight ticket it two-way.
      */
     init(id: UUID? = nil,
          code: String,
+         departureAirportID: Airport.IDValue,
+         destinationAirportID: Airport.IDValue,
+         departureDate: Date,
+         arrivalDate: Date,
          price: Double,
-         availableSeats: Int) {
+         availableSeats: Int,
+         isReturn: Bool) {
         
         self.id = id
         self.code = code
+        self.$departureAirport.id = departureAirportID
+        self.$destinationAirport.id = destinationAirportID
+        self.departureDate = departureDate
+        self.arrivalDate = arrivalDate
         self.price = price
         self.availableSeats = availableSeats
+        self.isReturn = isReturn
     }
     
 }

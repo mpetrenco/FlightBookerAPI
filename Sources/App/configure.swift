@@ -14,9 +14,9 @@ public func configure(_ app: Application) throws {
                                 database: Environment.get("DATABASE_NAME") ?? "vapor_database"), as: .psql)
     
     /**
-     * Add the `flights` schema to the database.
+     * Add the schemas to the database.
      */
-    app.migrations.add(CreateLocations())
+    app.migrations.add(CreateAirports())
     app.migrations.add(CreateFlights())
     
     /**

@@ -1,9 +1,9 @@
 import Vapor
 
 func routes(_ app: Application) throws {
-    let locationsController = LocationsController()
+    let airportsController = AirportsController()
     let flightsController = FlightsController()
     
-    try app.register(collection: locationsController)
+    try app.register(collection: airportsController)
     try app.register(collection: flightsController)
 }
